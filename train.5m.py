@@ -13,8 +13,8 @@ TRAINS = [
 date = datetime.now()
 datestring = date.strftime('%Y/%m/%d')
 
-delays = []
-shorts = []
+long_statuses = []
+short_statuses = []
 
 
 def get_status(statuses):
@@ -37,19 +37,19 @@ def shorten(message):
 def main():
 
     for train in TRAINS:
-        url = '{}{}'.format(train, datestring)  # 2016/09/22
+        url = '{}{}'.format(train, datestring)
         page = requests.get(url)
         tree = html.fromstring(page.content)
         delay = tree.xpath('//td[@class="delay"]/text()')
 
-        delays.append('{}|href={}'.format(delay[-1], url))
-        shorts.append(get_status(delay))
+        long_statuses.append('{}|href={}'.format(delay[-1], url))
+        short_statuses.append(get_status(delay))
 
-    print ':'.join(shorts)
+    print(':'.join(short_statuses))
 
-    print '---'
-    for delay in delays:
-        print delay
+    print('---')
+    for status in long_statuses:
+        print(status)
 
 
 if __name__ == '__main__':
