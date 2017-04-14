@@ -34,17 +34,23 @@ def shorten(message):
     return '{}{}'.format(sign, number)
 
 
-for train in TRAINS:
-    url = '{}{}'.format(train, datestring)  # 2016/09/22
-    page = requests.get(url)
-    tree = html.fromstring(page.content)
-    delay = tree.xpath('//td[@class="delay"]/text()')
+def main():
 
-    delays.append('{}|href={}'.format(delay[-1], url))
-    shorts.append(get_status(delay))
+    for train in TRAINS:
+        url = '{}{}'.format(train, datestring)  # 2016/09/22
+        page = requests.get(url)
+        tree = html.fromstring(page.content)
+        delay = tree.xpath('//td[@class="delay"]/text()')
+
+        delays.append('{}|href={}'.format(delay[-1], url))
+        shorts.append(get_status(delay))
+
+    print ':'.join(shorts)
+
+    print '---'
+    for delay in delays:
+        print delay
 
 
-print ':'.join(shorts)
-print '---'
-for delay in delays:
-    print delay
+if __name__ == '__main__':
+    main()
