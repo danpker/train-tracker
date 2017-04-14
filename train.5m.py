@@ -3,6 +3,14 @@ from lxml import html
 from datetime import datetime
 import requests
 import string
+
+# <bitbar.title>Train Tracker</bitbar.title>
+# <bitbar.version>v1.0</bitbar.version>
+# <bitbar.author>Daniel Parker</bitbar.author>
+# <bitbar.author.github>danpker</bitbar.author.github>
+# <bitbar.desc>Display the status of your train(s)</bitbar.desc>
+# <bitbar.dependencies>python</bitbar.dependencies>
+
 # These are the trains you wish you track
 TRAINS = [
   'http://www.realtimetrains.co.uk/train/Y60840/',
