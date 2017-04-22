@@ -50,8 +50,9 @@ def main():
         tree = html.fromstring(page.content)
         delay = tree.xpath('//td[@class="delay"]/text()')
 
-        long_statuses.append('{}|href={}'.format(delay[-1], url))
-        short_statuses.append(get_status(delay))
+        if len(delay) > 0:
+            long_statuses.append('{}|href={}'.format(delay[-1], url))
+            short_statuses.append(get_status(delay))
 
     print('/'.join(short_statuses))
 
