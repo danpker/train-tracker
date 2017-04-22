@@ -53,7 +53,7 @@ def main():
         long_statuses.append('{}|href={}'.format(delay[-1], url))
         short_statuses.append(get_status(delay))
 
-    print(':'.join(short_statuses))
+    print('/'.join(short_statuses))
 
     print('---')
     for status in long_statuses:
